@@ -36,13 +36,13 @@ public class SmsReceiver extends BroadcastReceiver {
 
                            JSONObject json = new JSONObject();
                            String bateria = this.getParameter(body, "bat:(\\d+)%");
-                           String latitude = this.getParameter(body, "lat:(-\\d+\\.\\d+)");
-                           String longitude = this.getParameter(body, "lon:(-\\d+\\.\\d+)");
+                           String latitude = this.getParameter(body, "lat:(\\d+\\.\\d+)");
+                           String longitude = this.getParameter(body, "lon:(\\d+\\.\\d+)");
 
                            json.put("numero", number);
                            json.put("bateria", bateria != null ? bateria.replace("bat:", "") : null);
-                           json.put("latitude", latitude != null ? latitude.replace("lat:", "") : null);
-                           json.put("longitude", longitude != null ? longitude.replace("lon:", "") : null);
+                           json.put("latitude", latitude != null ? "-".concat(latitude.replace("lat:", "")) : null);
+                           json.put("longitude", longitude != null ? "-".concat(longitude.replace("lon:", "")) : null);
 
                            new PostSMS().execute(json.toString());
                        }

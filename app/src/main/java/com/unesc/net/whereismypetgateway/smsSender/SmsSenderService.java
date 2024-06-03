@@ -11,10 +11,11 @@ public class SmsSenderService {
     private static final String message = "G123456#";;
     private static final SmsManager smsManager = SmsManager.getDefault();
 
-    public void send(final String number) {
-        String payload = String.format("%s %s", message, new Date().getTime());
-        smsManager.sendTextMessage(number, null, payload, null, null);
-        LogListUtil.LOG(String.format("SEND: %s \nDESTINY: %s", payload, number));
+    public void send(final String number, final  boolean log) {
+        smsManager.sendTextMessage(number, null, message, null, null);
+        if (log) {
+            LogListUtil.LOG(String.format("SEND: %s \nDESTINY: %s", message, number));
+        }
     }
 
 }

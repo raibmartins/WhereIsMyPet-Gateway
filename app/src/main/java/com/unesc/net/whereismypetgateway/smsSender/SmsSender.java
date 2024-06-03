@@ -21,10 +21,10 @@ public class SmsSender extends Service {
                 String[] numbers = new ObjectMapper().readValue(response, String[].class);
 
                 for (String number : numbers) {
-                    smsSenderService.send(number);
+                    smsSenderService.send(number, true);
                 }
 //                handler.postDelayed(this, 20000);
-                handler.postDelayed(this, 900000);
+                handler.postDelayed(this, 300000);
             } catch (Exception e) {}
         }
     };
